@@ -1,0 +1,58 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My First Site</title>
+</head>
+
+<body>
+	<div class="header">
+		<h1 class="site-tile text-center">
+			<a href="/">My First Site</a>
+		</h1>
+	</div>
+
+	<div class="container">
+	
+	{% comment %}
+	<!-- {% for <element> in <list>%} -->
+	{% endcomment %}
+
+	{% for post in post_list %}
+
+		<div class="post">
+			<div class="post-heading">
+				<h2 class="post-title">
+					<a herf="#">{{post.title}}</a>
+				</h2>
+			</div>
+			<div class="date">
+				{% comment %}
+				<!-- {{ <variable_name> | <filter_name> : <filter_arguments> }} -->
+				{% endcomment %}
+				
+				{{post.created_at|date:"Y/m/d"}}
+			</div>
+			<!-- check if there's thumbnail -->
+			{% if post.photo %}
+			<div class="thumbnail">
+				<img src="{{post.photo}}" />
+			</div>
+			{% else %}
+		 	<div class="thumbnail thubmbnail-default"></div>
+			{% endif %}
+			<div class="post-content read-more-block">
+				{{post.content}}
+			</div>
+			<div class="post-footer">
+				<a class="read-more" herf="#">
+					Read More
+				</a>
+			</div>
+		</div>
+
+	{% endfor %}
+	</div > <!-- end container-->
+</body>
+</html>
